@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesso Almeida</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 80px;
+            text-transform: uppercase;
+            text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Estilos da roleta de imagens */
+        .gallery-container {
+            width: 80%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery img {
+            width: 45%; /* Ajusta o tamanho das imagens */
+            height: auto;
+            border-radius: 8px;
+            margin: 0 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        /* Botões de navegação da galeria */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Botões do WhatsApp */
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Gesso Almeida</h1>
+        <p>Transforme sua casa com o melhor do gesso!</p>
+    </header>
+
+    <!-- Galeria de Imagens com roleta -->
+    <div class="gallery-container">
+        <div class="gallery" id="image-gallery">
+            <img src="https://www.atacadaodogessojarinu.com.br/assets/images/moldura-gesso.jpg" alt="Gesso feito 1">
+            <img src="https://www.cemear.com.br/imagens/informacoes/gesso-acartonado-valor-m2-02.webp" alt="Gesso feito 2">
+            <img src="https://www.mobly.com.br/blog/wp-content/uploads/2021/07/2-2-1.jpg" alt="Gesso feito 3">
+            <img src="https://molduras.alojadogesso.com.br/imagens/moldura-de-gesso-para-teto-banheiro-valor.jpg" alt="Gesso feito 4">
+            <img src="https://t3.ftcdn.net/jpg/00/93/09/90/360_F_93099051_UZQYRYmkAJxZPuWS7yvKOmR6MSTTlSb5.jpg" alt="Gesso feito 5">
+        </div>
+        <!-- Botões de navegação -->
+        <span class="prev" onclick="moveGallery(-1)">&#10094;</span>
+        <span class="next" onclick="moveGallery(1)">&#10095;</span>
+    </div>
+
+    <!-- Botão WhatsApp -->
+    <div class="button-container">
+        <a href="https://wa.me/5527999566617" class="whatsapp-button" target="_blank">Entre em contato pelo WhatsApp</a>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Gesso Almeida &copy; 2024 - Todos os direitos reservados</p>
+        <p>Telefone: <a href="tel:+5527999566617" style="color: white;">(27) 999566617</a></p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+        const gallery = document.getElementById('image-gallery');
+        const totalImages = images.length;
+
+        // Função para mover a galeria
+        function moveGallery(direction) {
+            currentIndex += direction;
+
+            // Garantir que o índice esteja dentro dos limites da galeria
+            if (currentIndex >= totalImages) {
+                currentIndex = 0; // Vai para a primeira imagem
+            } else if (currentIndex < 0) {
+                currentIndex = totalImages - 1; // Vai para a última imagem
+            }
+
+            // Atualiza o estilo de transform para mover a galeria
+            gallery.style.transform = `translateX(-${currentIndex * 55}%)`; // 55% para que 2 imagens fiquem visíveis
+        }
+
+        // Inicia a rotação com a primeira imagem
+        moveGallery(0);
+    </script>
+</body>
+</html>
